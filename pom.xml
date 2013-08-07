@@ -30,6 +30,14 @@
 	</build>
 
 	<dependencies>
+
+		<!-- Commons Lang -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -44,6 +52,14 @@
 			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
-	
+
+		<!-- cache -->
+		<dependency>
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+			<version>0.61</version>
+		</dependency>
+
+
 	</dependencies>
 </project>
