@@ -5,23 +5,37 @@
 
 <taglib>
 
-    <tlib-version>1.0</tlib-version> 
-    <jsp-version>1.2</jsp-version> 
-    <short-name>jhyun-jsptags</short-name>
-    <uri>https://github.com/ageldama/jhyun-jsptags</uri>
-    <description>jhyun-jsptags</description>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>jhyun-jsptags</short-name>
+	<uri>https://github.com/ageldama/jhyun-jsptags</uri>
+	<description>jhyun-jsptags</description>
 
-    <tag>
-        <description>capture its enclosing renders.</description>
-        <name>capture</name>
-        <tag-class>kr.co.inger.jhyun_jsptags.CaptureTag</tag-class>
-        <body-content>JSP</body-content>
-        <attribute>
-            <description>name of captured-rendered-string. (..attached to pageContext)</description>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-    
+	<tag>
+		<description>capture its enclosing renders.</description>
+		<name>capture</name>
+		<tag-class>kr.co.inger.jhyun_jsptags.CaptureTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>name of captured-rendered-string. (..attached to
+				pageContext)</description>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>eval-only-once</name>
+		<description>evaluate enclosing block only once in its page-context.</description>
+		<tag-class>kr.co.inger.jhyun_jsptags.EvalOnlyOnceTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>key</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>unique id for identify with other evals.</description>
+		</attribute>
+	</tag>
+
 </taglib>
