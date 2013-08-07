@@ -18,4 +18,4 @@ Marvelous JSP Taglib!!!
   * cache enclosing JSP block.
   * .. show it's contents with cached(if-evaluated-once) contents.
 
-* Example: https://github.com/ageldama/jhyun-jsptags-hello
+* Examples: https://github.com/ageldama/jhyun-jsptags-hello
