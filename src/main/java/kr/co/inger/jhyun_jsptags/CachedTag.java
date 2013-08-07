@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
+import javax.cache.spi.CachingProvider;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
@@ -39,7 +40,8 @@ public class CachedTag extends BodyTagSupport {
 
 	public CachedTag() {
 		super();
-		this.cacheManager = Caching.getCacheManager();
+		CachingProvider cp = Caching.getCachingProvider();
+		this.cacheManager = cp.getCacheManager();
 	}
 
 	protected String getCacheName() {
@@ -52,8 +54,8 @@ public class CachedTag extends BodyTagSupport {
 
 	@Deprecated
 	private boolean isCacheExists(final String cacheName) {
-		for (Cache c : this.cacheManager.getCaches()) {
-			if (StringUtils.equals(c.getName(), cacheName)) {
+		for (String cn : this.cacheManager.getCacheNames()) {
+			if (StringUtils.equals(cn, cacheName)) {
 				return true;
 			}
 		}
