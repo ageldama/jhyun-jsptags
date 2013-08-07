@@ -41,8 +41,6 @@ public class CachedTag extends BodyTagSupport {
 		super();
 		CachingProvider cp = Caching.getCachingProvider();
 		this.cacheManager = cp.getCacheManager();
-		Cache c = this.getCache();
-		System.out.println(c);
 	}
 
 	public static final String CACHE_NAME = "jhyun-jsptags-cacheds";
