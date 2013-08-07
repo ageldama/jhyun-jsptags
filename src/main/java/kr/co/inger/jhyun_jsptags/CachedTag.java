@@ -10,7 +10,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,24 +41,14 @@ public class CachedTag extends BodyTagSupport {
 		super();
 		CachingProvider cp = Caching.getCachingProvider();
 		this.cacheManager = cp.getCacheManager();
+		Cache c = this.getCache();
+		System.out.println(c);
 	}
 
-	protected String getCacheName() {
-		return "jsp-cached-tag";
-	}
+	public static final String CACHE_NAME = "jhyun-jsptags-cacheds";
 
 	private Cache getCache() {
-		return this.cacheManager.getCache(getCacheName());
-	}
-
-	@Deprecated
-	private boolean isCacheExists(final String cacheName) {
-		for (String cn : this.cacheManager.getCacheNames()) {
-			if (StringUtils.equals(cn, cacheName)) {
-				return true;
-			}
-		}
-		return false;
+		return this.cacheManager.getCache(CACHE_NAME);
 	}
 
 	public Cache getOrCreateCache() {
