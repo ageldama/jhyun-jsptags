@@ -32,6 +32,18 @@
 			<url>http://nexus.inger.co.kr/content/groups/public/</url>
 			<layout>default</layout>
 		</repository>
+		<!-- javax.cache -->
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>			
 	</repositories>
 
 	<distributionManagement>
@@ -93,7 +105,7 @@
 		<dependency>
 			<groupId>javax.cache</groupId>
 			<artifactId>cache-api</artifactId>
-			<version>0.8</version>
+			<version>0.9</version>
 			<scope>provided</scope>
 		</dependency>
 
