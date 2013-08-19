@@ -8,13 +8,49 @@
 	<packaging>jar</packaging>
 
 	<name>jhyun-jsptags</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/ageldama/jhyun-jsptags</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<repositories>
+		<!-- inger.co.kr -->
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+			<id>ingerPublic</id>
+			<name>inger.co.kr public</name>
+			<url>http://nexus.inger.co.kr/content/groups/public/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>inger-release</id>
+			<name>inger.co.kr releases</name>
+			<url>http://nexus.inger.co.kr/content/repositories/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>inger-snapshot</id>
+			<name>inger.co.kr snapshots</name>
+			<url>http://nexus.inger.co.kr/content/repositories/snapshots/</url>
+			<layout>default</layout>
+		</snapshotRepository>
+	</distributionManagement>
+	
 	<build>
 		<plugins>
 			<!-- Java Source/Target Versions -->
