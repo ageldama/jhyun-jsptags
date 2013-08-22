@@ -17,7 +17,7 @@ Marvelous JSP Taglib!!!
   * commons-jcs-backed. : http://commons.apache.org/proper/commons-jcs/
   * cache enclosing JSP block.
   * .. show it's contents with cached(if-evaluated-once) contents.
-  * ***don't forget to provide your own `cache.ccf` **
+  * ** don't forget to provide your own `cache.ccf` **
   	* http://commons.apache.org/proper/commons-jcs/BasicJCSConfiguration.html
   	* ...this tag uses region that named as `jhyun-jsptags-cached`.
 
