@@ -14,9 +14,12 @@ Marvelous JSP Taglib!!!
   * .. to prevent specific JSP code-blocks evaluate multiple times. (even with includes.) 
   
 * `cached` tag
-  * javax.cache-backed.
+  * commons-jcs-backed. : http://commons.apache.org/proper/commons-jcs/
   * cache enclosing JSP block.
   * .. show it's contents with cached(if-evaluated-once) contents.
+  * ***don't forget to provide your own `cache.ccf` **
+  	* http://commons.apache.org/proper/commons-jcs/BasicJCSConfiguration.html
+  	* ...this tag uses region that named as `jhyun-jsptags-cached`.
 
 
 Examples, Maven Repository.

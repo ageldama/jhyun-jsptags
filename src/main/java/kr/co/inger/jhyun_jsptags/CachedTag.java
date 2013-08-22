@@ -2,19 +2,19 @@ package kr.co.inger.jhyun_jsptags;
 
 import java.io.IOException;
 
-import javax.cache.Cache;
-import javax.cache.CacheManager;
-import javax.cache.Caching;
-import javax.cache.spi.CachingProvider;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.jcs.JCS;
+import org.apache.jcs.access.exception.CacheException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * 감싼 JSP 내용을 캐슁하는 태그.
+ * 
+ * "jhyun-jsptags-cached"을 캐쉬로서 JCS에서 사용.
  * 
  * @author jhyun
  * @since 2012/06/12/Tue
@@ -35,28 +35,29 @@ public class CachedTag extends BodyTagSupport {
 		this.key = key;
 	}
 
-	private CacheManager cacheManager;
-
 	public CachedTag() {
 		super();
-		CachingProvider cp = Caching.getCachingProvider();
-		this.cacheManager = cp.getCacheManager();
 	}
 
-	public static final String CACHE_NAME = "jhyun-jsptags-cacheds";
+	public static final String CACHE_NAME = "jhyun-jsptags-cached";
 
-	private Cache getCache() {
-		return this.cacheManager.getCache(CACHE_NAME);
+	private JCS getCache() throws CacheException {
+		return JCS.getInstance(CACHE_NAME);
 	}
 
-	public Cache getOrCreateCache() {
+	public JCS getOrCreateCache() throws CacheException {
 		return this.getCache();
 	}
 
 	@Override
 	public int doStartTag() throws JspException {
 		// check is-there-cached-string
-		Object v = this.getOrCreateCache().get(getKey());
+		Object v;
+		try {
+			v = this.getOrCreateCache().get(getKey());
+		} catch (CacheException e1) {
+			throw new JspException(e1);
+		}
 		if (v != null) {
 			JspWriter out = this.pageContext.getOut();
 			try {
@@ -74,10 +75,19 @@ public class CachedTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		//
-		Object v = this.getOrCreateCache().get(getKey());
+		Object v;
+		try {
+			v = this.getOrCreateCache().get(getKey());
+		} catch (CacheException e1) {
+			throw new JspException(e1);
+		}
 		if (v == null) {
 			final String enclosingContent = this.getBodyContent().getString();
-			this.getOrCreateCache().put(getKey(), enclosingContent);
+			try {
+				this.getOrCreateCache().putSafe(getKey(), enclosingContent);
+			} catch (CacheException e1) {
+				throw new JspException(e1);
+			}
 			//
 			try {
 				this.pageContext.getOut().println(enclosingContent);
